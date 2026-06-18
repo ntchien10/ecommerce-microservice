@@ -38,3 +38,13 @@ jobs:
 
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/notification-service:1.0
+
+      - name: Deploy to K3s
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            kubectl rollout restart deployment notification-service
+            kubectl rollout status deployment notification-service
