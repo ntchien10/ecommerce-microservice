@@ -16,12 +16,6 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v4
 
-      - name: Setup Java 21
-        uses: actions/setup-java@v4
-        with:
-          distribution: temurin
-          java-version: 21
-
       - name: Build notification-service
         working-directory: services/notification-service
         run: mvn clean package -DskipTests
