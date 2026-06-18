@@ -40,6 +40,6 @@ jobs:
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/notification-service:1.0
 
       - name: Deploy to K3s
-  	run: |
-    	  kubectl rollout restart deployment notification-service
-    	  kubectl rollout status deployment notification-service
+        run: |
+          kubectl rollout restart deployment notification-service
+          kubectl rollout status deployment notification-service
