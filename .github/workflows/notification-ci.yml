@@ -33,7 +33,7 @@ jobs:
       - name: Push Docker image
         run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/notification-service:1.0
 
-      - name: Deploy to K3s
+      - name: Deploy to K3s by Helm
         run: |
-          kubectl rollout restart deployment notification-service
+          helm upgrade --install notification-service /home/chien/k8s/helm/notification-service
           kubectl rollout status deployment notification-service
