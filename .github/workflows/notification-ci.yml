@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - "services/notification-service/**"
+      - "helm/notification-service/**"
       - ".github/workflows/notification-ci.yml"
 
 jobs:
@@ -35,5 +36,5 @@ jobs:
 
       - name: Deploy to K3s by Helm
         run: |
-	  helm upgrade --install notification-service ./helm/notification-service
+          helm upgrade --install notification-service ./helm/notification-service
           kubectl rollout status deployment notification-service
