@@ -35,5 +35,5 @@ jobs:
 
       - name: Deploy to K3s by Helm
         run: |
-          helm upgrade --install notification-service /home/chien/k8s/helm/notification-service
+	  helm upgrade --install notification-service ./helm/notification-service
           kubectl rollout status deployment notification-service
