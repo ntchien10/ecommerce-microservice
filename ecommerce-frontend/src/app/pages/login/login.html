@@ -1,0 +1,41 @@
+<div class="login-page">
+
+    <div class="login-card">
+
+        <div class="logo">
+            🚀
+        </div>
+
+        <h1>E-Commerce</h1>
+
+        <p>Đăng nhập để tiếp tục</p>
+
+        <input
+                type="text"
+                [(ngModel)]="username"
+                placeholder="👤 Username">
+
+        <input
+                type="password"
+                [(ngModel)]="password"
+                placeholder="🔒 Password">
+
+        @if(errorMessage){
+
+            <div class="error">
+
+                {{errorMessage}}
+
+            </div>
+
+        }
+
+        <button (click)="login()">
+
+            Đăng nhập
+
+        </button>
+
+    </div>
+
+</div>
