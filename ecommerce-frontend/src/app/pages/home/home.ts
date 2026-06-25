@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ProductService } from '../../services/product';
@@ -32,7 +32,8 @@ export class HomeComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private cdr: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -43,7 +44,6 @@ export class HomeComponent implements OnInit {
     this.productService.getProducts().subscribe({
       next: (res: any) => {
         console.log('PRODUCT RESPONSE:', res);
-        console.log('IS ARRAY:', Array.isArray(res));
   
         if (Array.isArray(res)) {
           this.products = res;
@@ -56,10 +56,13 @@ export class HomeComponent implements OnInit {
         }
   
         console.log('PRODUCTS TO RENDER:', this.products);
+  
+        this.cdr.detectChanges();
       },
       error: (err) => {
         console.log('PRODUCT ERROR:', err);
         this.errorMessage = err.error?.message || 'Không tải được danh sách sản phẩm';
+        this.cdr.detectChanges();
       }
     });
   }
